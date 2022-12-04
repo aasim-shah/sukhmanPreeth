@@ -1,0 +1,48 @@
+
+    
+    <%- include('reuseables/Header.ejs') %>
+    <%- include('reuseables/Navbar.ejs') %>
+
+
+    
+    <div class="w-full flex justify-center items-center">
+    <div class="w-4/12 mx-auto my-4">
+        <% if(messages.error){%>
+            <p class="text-black w-8/12 mx-auto py-2 bg-red-200 text-center my-2"><%= messages.error %></p>
+      <% }  %>
+
+        <form method="post" action="/article/new">
+            <div class="mb-3">
+              <input type="text" required name="headline" placeholder="Headline ...." class="border-2 py-2 px-3 w-full" >
+            </div>
+            <div class="mb-3">
+              <input name="subHeadline"   type="text" placeholder="subHeadline .... " class="border-2 py-2 px-3 w-full">
+            </div>
+            
+            <div class="mb-3">
+                <input name="image"   type="file"  class="border-2 py-2 px-3 w-full">
+              </div>
+
+            <div class="mb-3">
+               <textarea name="content" id=""  rows="4" class="border-2 py-2 px-3 w-full" placeholder="Content ...."></textarea>
+            </div>
+            <div class="">
+              <button type="submit" class="py-1 px-3 bg-yellow-300 rounded-sm font-bold w-full">Add Article</button>
+            </div>
+          </form>
+       
+        </div>
+    
+     
+    </div>
+
+
+
+
+    
+    <%- include('reuseables/Footer.ejs') %>
+
+
+
+
+

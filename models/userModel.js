@@ -4,9 +4,11 @@ const userSchema  = mongoose.Schema({
     firstName : String,
     lastName : String,
     email : {type: String , required : true , lowercase: true,} ,
-    password : String,
+    password : {type: String , required : true  } ,
     profilePic : String,
-
+    articles : [
+        {type : mongoose.Schema.Types.ObjectId , ref : "article"}
+    ]
 })
 
 

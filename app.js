@@ -8,21 +8,17 @@ const passport = require('passport')
 const flash = require('express-flash')
 const passportLocal = require('passport-local').Strategy
 const session = require('express-session')
+const path = require('path')
+const articleRouter = require('./routes/articleRoute')
+const userRouter = require('./routes/userRoute')
 const port = process.env.PORT || 5000;
-const multer  = require('multer')
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/uploads')
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, uniqueSuffix + "-" +  file.originalname )
-  }
-})
 
-const upload = multer({ storage: storage })
+const {upload } = require('./midlewalres/multer')
 
 
+app.use('/' , express.static(__dirname + '/public'))
+app.use('/user' , express.static(__dirname + '/public'))
+app.use('/article' , express.static(__dirname + '/public'))
 
 // mongoose.connect("mongodb://localhost:27017/testing").then(res=>console.log('compass db connected')).catch(err => console.log(err))
  mongoose.connect("mongodb+srv://asim:mardan@cluster0.btwlh.mongodb.net/preeth?retryWrites=true&w=majority").then(res=>console.log('atlass db connecteed')).catch(err => console.log(err))
@@ -30,16 +26,9 @@ const upload = multer({ storage: storage })
 
 
 
-const checkAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) { return next() }
-  res.redirect("/login")
-}
-
-
-
-//midlewares 
 // parse application/json
 app.use(bodyParser.json())
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set("view engine" , "ejs")
 
@@ -56,7 +45,8 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-
+app.use('/article' , articleRouter)
+app.use('/user' , userRouter)
 
 
 passport.use(new passportLocal({usernameField : "email"},
@@ -80,7 +70,7 @@ passport.deserializeUser(async(userId, done) => {
 })
 
 
-app.get("/"  ,  async(req ,res) =>{
+app.get("/"   , async(req ,res) =>{
 res.render('Homepage' )
 })
 
@@ -89,6 +79,9 @@ res.render('Homepage' )
 app.get("/login"  ,  async(req ,res) =>{
  res.render('Login')
 })
+
+
+
 
 app.get("/register"  ,  async(req ,res) =>{
   res.render('Signup')
@@ -134,6 +127,23 @@ app.post('/login',
     req.flash('info', 'Flash Message Added');
     res.redirect('/');
   });
+
+
+
+
+
+
+
+
+
+
+app.get('/*', (req, res) => {
+ res.render('pageNotFound')
+});
+
+
+
+
 
 app.listen(port , ()=>{
     console.log(`server is running on port ${port} , http://localhost:${port}`)
