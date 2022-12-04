@@ -24,7 +24,8 @@ const upload = multer({ storage: storage })
 
 
 
-mongoose.connect("mongodb://localhost:27017/testing").then(res=>console.log('db connected')).catch(err => console.log(err))
+// mongoose.connect("mongodb://localhost:27017/testing").then(res=>console.log('compass db connected')).catch(err => console.log(err))
+ mongoose.connect("mongodb+srv://asim:mardan@cluster0.btwlh.mongodb.net/preeth?retryWrites=true&w=majority").then(res=>console.log('atlass db connecteed')).catch(err => console.log(err))
 
 
 
