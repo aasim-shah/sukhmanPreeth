@@ -81,7 +81,7 @@ passport.deserializeUser(async(userId, done) => {
 
 
 app.get("/"  ,  async(req ,res) =>{
-res.render('Homepage' ,{user : req.user})
+res.render('Homepage' )
 })
 
 
