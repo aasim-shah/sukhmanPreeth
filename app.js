@@ -81,18 +81,17 @@ passport.deserializeUser(async(userId, done) => {
 
 
 app.get("/"  ,  async(req ,res) =>{
-
-res.render('homepage' ,{user : req.user})
+res.render('Homepage' ,{user : req.user})
 })
 
 
 
 app.get("/login"  ,  async(req ,res) =>{
- res.render('login')
+ res.render('Login')
 })
 
 app.get("/register"  ,  async(req ,res) =>{
-  res.render('signup')
+  res.render('Signup')
  })
  
 
