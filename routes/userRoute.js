@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {upload }  = require('../midlewalres/multer')
-
+const userModel = require('../models/userModel')
 const checkAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) { return next() }
     res.redirect("/login")
@@ -28,7 +28,7 @@ router.get("/profile"  , checkAuthenticated , async(req ,res) =>{
       const findUser = await userModel.findOne({email : email})
       if(!findUser){
         req.flash('error'  , 'Something Went Wrong !')
-       res.redirect('/profile')
+       res.redirect('/user/profile')
       }
 
       findUser.firstName = firstName
@@ -40,7 +40,7 @@ router.get("/profile"  , checkAuthenticated , async(req ,res) =>{
       
       await findUser.save()
       req.flash('error' , "user Profile Updated !")
-      res.redirect('/profile')
+      res.redirect('/user/profile')
       
     } catch (error) {
       console.log(error)
@@ -56,11 +56,6 @@ router.get("/profile"  , checkAuthenticated , async(req ,res) =>{
   res.redirect('/login')   
   })
 
-router.get('/logout', (req, res) => {
-    req.logout(null, () => {
-        res.redirect('/login')
-    });
-});
 
 
 module.exports = router;

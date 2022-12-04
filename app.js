@@ -132,7 +132,11 @@ app.post('/login',
 
 
 
-
+app.get('/logout', (req, res) => {
+    req.logout(null, () => {
+        res.redirect('/login')
+    });
+});
 
 
 
