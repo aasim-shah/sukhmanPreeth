@@ -17,7 +17,7 @@
             <div class="flex flex-row mx-1 justify-start mt-1 items-center">
             
                 <span class="text-sm text-gray-500 flex flex-row justify-between items-center">by :  <% if(article.authorProfilePic){ %>
-                    <img src="uploads/<%= article.authorProfilePic %>" class="w-6 h-6 mx-2" alt=""> 
+                    <img src="/uploads/<%= article.authorProfilePic %>" class="w-6 h-6 mx-2 rounded-md" alt=""> 
                     <% }else{ %>
                         <img  src="/assets/user1.png" alt="profile_Img"  class="w-6 h-6 mx-2"   alt="">
                     <% }  %>   <%= article.authorName %></span>
