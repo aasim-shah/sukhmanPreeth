@@ -14,6 +14,7 @@ const userRouter = require('./routes/userRoute')
 const port = process.env.PORT || 5000;
 
 const {upload } = require('./midlewalres/multer')
+const articleModel = require('./models/articleModel')
 
 
 app.use('/' , express.static(__dirname + '/public'))
@@ -71,7 +72,12 @@ passport.deserializeUser(async(userId, done) => {
 
 
 app.get("/"   , async(req ,res) =>{
-res.render('Homepage' )
+  const articles = await articleModel.find().populate('author')
+  if(req.user){
+    return res.render('Homepage' ,{user : req.user , articles : articles})
+  }  
+  console.log(articles)
+  res.render('Homepage' ,{user : null , articles : articles})
 })
 
 

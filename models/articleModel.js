@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 
 const articleSchema  = mongoose.Schema({
-   title : String,
-   user  : {type : mongoose.Schema.Types.ObjectId , ref : "user"},
-   image : String,
-   headLine : {type : String , required : true},
-   subHeadLine : {type : String },
-   authorName : {type : String , required : true},
-   authorProfilPic : {type : String , required : true},
+   headline : {type : String , required : true},
+   subHeadline : {type : String },
+   authorName : {type : String },
+   authorProfilPic : {type : String },
+   authorId : String,
    content : {type : String , required : true},
+   image : String,
+   author  : {type : mongoose.Schema.Types.ObjectId , ref : "user"},
    createdAt : {type : Date , default : Date.now()}
 
 })

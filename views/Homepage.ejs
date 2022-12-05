@@ -4,16 +4,61 @@
 
 
 
+    <% if(messages.success){%>
+        <p class="text-black w-9/12 sm:w-6/12 mx-auto py-2 bg-green-200 rounded-md text-center my-2"><%= messages.success %></p>
+  <% }  %>
+
+
+
+<div class="w-11/12 sm:w-6/12 py-3 px-2 my-2 mx-auto bg-gray-100">
+    <div class="flex flex-row justify-between items-center">
+        <p class="text-lg">You have some thing in your mind  ? </p>
+        <a href="/article/new" class="py-1 px-3 bg-yellow-400 rounded-md">Add Post</a>
+    </div>
+</div>
 
 
 
 
 
-    <p class="text-2xl">HOMEPAGE</p>
 
+<div class="w-11/12 sm:w-9/12  my-2 mx-auto bg-white">
+   
 
+    <% if(articles.length > 0) {%>
+        <% articles.forEach((article)=>{%>
+    <div class="grid grid-cols-12 bg-gray-100 py-2 rounded-md mt-3 px-2">
+        <div class="col-span-11 sm:col-span-3">
+            <img src="/uploads/<%= article.image %>"   class="w-[11rem]" alt="image">
+        </div>
 
+        <div class="col-span-11 sm:col-span-9 sm:ml-9 relative">
+            <% if(user){%>
+                <%  let userId = (user._id).toString(); let authorId = (article.authorId).toString(); %>
+                <% if(userId === authorId){ %>
+                <div class="okay">  <a href="/article/edit/<%= article._id %>" class="absolute bg-yellow-400 right-9 w-8 h-8 rounded-md flex justify-center items-center"><i class="fa-solid fa-pen"></i></a>
+                    <a href="/article/delete/<%= article._id %>" class="absolute bg-red-400 right-0 w-8 h-8  rounded-md flex justify-center items-center"><i class="fa-solid fa-trash"></i></a></div>
+                    <%}%>
+                    <%}%>
+            <p class="text-[1rem] sm:text-md w-9/12 font-bold"><%= article.headline %></p>
 
+            <p class="text-[0.9rem] sm:text-md mt-2 font-semibold"><%= article.subHeadline %></p>
+            
+            <p class="text-[0.8rem] sm:text-md mt-2 "><%= article.content %></p>
+
+           <div class="flex flex-row mx-4 justify-end mt-2 items-center">
+            
+                <span class="text-sm text-gray-500">Author : <%= article.authorName %></span>
+                <!-- <span class="text-sm text-gray-500">created at  :<%= article.createdAt %></span> -->
+           </div>
+        </div>
+    </div>
+        
+    <% }) %>
+    <% }else{ %>
+        <p class="text-xl">No Article Found !!</p>
+   <%}%>
+</div>
 
 
 
