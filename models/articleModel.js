@@ -4,7 +4,7 @@ const articleSchema  = mongoose.Schema({
    headline : {type : String , required : true},
    subHeadline : {type : String },
    authorName : {type : String },
-   authorProfilPic : {type : String },
+   authorProfilePic : {type : String },
    authorId : String,
    content : {type : String , required : true},
    image : String,

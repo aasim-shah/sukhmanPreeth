@@ -39,7 +39,7 @@ router.get("/profile"  , checkAuthenticated , async(req ,res) =>{
       }
       
       await findUser.save()
-      req.flash('error' , "user Profile Updated !")
+      req.flash('success' , "user Profile Updated !")
       res.redirect('/user/profile')
       
     } catch (error) {

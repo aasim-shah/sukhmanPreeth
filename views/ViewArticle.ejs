@@ -1,0 +1,42 @@
+
+    
+    <%- include('reuseables/Header.ejs') %>
+    <%- include('reuseables/Navbar.ejs') %>
+
+
+    
+  <div class="w-11/12 sm:w-9/12 mx-auto rounded-md">
+    <div class="grid grid-cols-12 bg-gray-100 py-2 rounded-md mt-3 px-2">
+        <div class="col-span-12 sm:col-span-4">
+        
+            <img src="/uploads/<%= article.image %>"   class="w-[14rem] mx-auto" alt="image">
+        </div>
+
+        <div class="col-span-12 sm:col-span-8 sm:ml-4 relative">
+            <p class="text-[1.3rem] sm:text-md  font-bold"><%= article.headline %></p>
+            <div class="flex flex-row mx-1 justify-start mt-1 items-center">
+            
+                <span class="text-sm text-gray-500 flex flex-row justify-between items-center">by :  <% if(article.authorProfilePic){ %>
+                    <img src="uploads/<%= article.authorProfilePic %>" class="w-6 h-6 mx-2" alt=""> 
+                    <% }else{ %>
+                        <img  src="/assets/user1.png" alt="profile_Img"  class="w-6 h-6 mx-2"   alt="">
+                    <% }  %>   <%= article.authorName %></span>
+                <!-- <span class="text-sm text-gray-500">created at  :<%= article.createdAt %></span> -->
+           </div>
+            <p class="text-[1.1rem] sm:text-md mt-2 font-semibold"><%= article.subHeadline %></p>
+            <p class="text-md text-green-800 font-bold">Content :</p>
+            <p class="text-[1rem] sm:text-md mt-1 pl-2"><%= article.content %></p>
+
+          
+        </div>
+    </div>
+  </div>
+
+
+    
+    <%- include('reuseables/Footer.ejs') %>
+
+
+
+
+

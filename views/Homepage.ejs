@@ -7,13 +7,15 @@
     <% if(messages.success){%>
         <p class="text-black w-9/12 sm:w-6/12 mx-auto py-2 bg-green-200 rounded-md text-center my-2"><%= messages.success %></p>
   <% }  %>
-
+  <% if(messages.error){%>
+    <p class="text-black w-8/12 mx-auto py-2 bg-red-200 text-center my-2 rounded-md"><%= messages.error %></p>
+    <% }  %>
 
 
 <div class="w-11/12 sm:w-6/12 py-3 px-2 my-2 mx-auto bg-gray-100">
     <div class="flex flex-row justify-between items-center">
         <p class="text-lg">You have some thing in your mind  ? </p>
-        <a href="/article/new" class="py-1 px-3 bg-yellow-400 rounded-md">Add Post</a>
+        <a href="/article/new" class="py-1 px-3 bg-yellow-400 rounded-md w-[7rem] text-center">Add Post</a>
     </div>
 </div>
 
@@ -27,12 +29,15 @@
 
     <% if(articles.length > 0) {%>
         <% articles.forEach((article)=>{%>
+          
     <div class="grid grid-cols-12 bg-gray-100 py-2 rounded-md mt-3 px-2">
-        <div class="col-span-11 sm:col-span-3">
-            <img src="/uploads/<%= article.image %>"   class="w-[11rem]" alt="image">
+        <div class="col-span-12 sm:col-span-3">
+            <a href="/article/view/<%= article._id %>">
+                <img src="/uploads/<%= article.image %>"   class="w-[11rem] mx-auto" alt="image">
+            </a>
         </div>
 
-        <div class="col-span-11 sm:col-span-9 sm:ml-9 relative">
+        <div class="col-span-12 sm:col-span-9 sm:ml-4 relative">
             <% if(user){%>
                 <%  let userId = (user._id).toString(); let authorId = (article.authorId).toString(); %>
                 <% if(userId === authorId){ %>
@@ -40,7 +45,9 @@
                     <a href="/article/delete/<%= article._id %>" class="absolute bg-red-400 right-0 w-8 h-8  rounded-md flex justify-center items-center"><i class="fa-solid fa-trash"></i></a></div>
                     <%}%>
                     <%}%>
+                    <a href="/article/view/<%= article._id %>">
             <p class="text-[1rem] sm:text-md w-9/12 font-bold"><%= article.headline %></p>
+                    </a>
 
             <p class="text-[0.9rem] sm:text-md mt-2 font-semibold"><%= article.subHeadline %></p>
             
@@ -48,15 +55,22 @@
 
            <div class="flex flex-row mx-4 justify-end mt-2 items-center">
             
-                <span class="text-sm text-gray-500">Author : <%= article.authorName %></span>
-                <!-- <span class="text-sm text-gray-500">created at  :<%= article.createdAt %></span> -->
+                <span class="text-sm text-gray-500 flex flex-row justify-between items-center">by :
+                    
+                    
+                    <% if(article.authorProfilePic){ %>
+                        <img src="uploads/<%= article.authorProfilePic %>" class="w-6 h-6 mx-2" alt=""> 
+                        <% }else{ %>
+                            <img  src="/assets/user1.png" alt="profile_Img"  class="w-6 h-6 mx-2"   alt="">
+                        <% }  %>
+                    <%= article.authorName %></span>
            </div>
-        </div>
+        </div>       
     </div>
-        
+
     <% }) %>
     <% }else{ %>
-        <p class="text-xl">No Article Found !!</p>
+        <p class="text-xl text-center  my-3">No Article Found !!</p>
    <%}%>
 </div>
 

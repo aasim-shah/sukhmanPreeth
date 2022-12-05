@@ -2,6 +2,12 @@
     <%- include('reuseables/Navbar.ejs') %>
 
 <% if(user){  %>
+    <% if(messages.error){%>
+        <p class="text-black w-8/12 mx-auto py-2 bg-red-200 text-center my-2 rounded-md"><%= messages.error %></p>
+        <% }  %>
+        <% if(messages.success){%>
+            <p class="text-black w-9/12 sm:w-6/12 mx-auto py-2 bg-green-200 rounded-md text-center my-2"><%= messages.success %></p>
+      <% }  %>
     <div class="bg-gray-300 w-11/12 sm:8/12 mx-auto mt-6">
         <div class="grid grid-cols-12">
             <div class="col-span-12 sm:col-span-5">
@@ -49,10 +55,7 @@
         </div>
     
     </div>
-    <% if(messages.error){%>
-        <p class="text-black w-8/12 mx-auto py-2 bg-red-200 text-center my-2 rounded-md"><%= messages.error %></p>
-        <% }  %>
-
+    
     <% }else{ %>
 
         <p class="text-center">No User Loggedin </p>

@@ -47,6 +47,14 @@ router.get('/edit/:id' , async(req ,res) =>{
 })
 
 
+
+router.get('/view/:id' , async(req ,res) =>{
+    const {id } = req.params
+    const article = await articleModel.findById(id)
+    res.render('ViewArticle' , {article})
+})
+
+
 router.post('/edit' , upload.single('image') , async(req ,res) =>{
     const { articleId , headline , subHeadline  , content} = req.body
     const article = await articleModel.findById(articleId)
@@ -62,7 +70,7 @@ router.post('/edit' , upload.single('image') , async(req ,res) =>{
 router.get('/delete/:id' , async(req ,res) =>{
     const {id  ,} = req.params
     const article = await articleModel.findByIdAndRemove(id)
-    req.flash('success' , "Article Deleted )")
+    req.flash('error' , "Article Deleted )")
     res.redirect('/')
 })
 
