@@ -16,25 +16,25 @@
 
         <form method="post" action="/article/edit" enctype="multipart/form-data">
             <div class="mb-3">
-              <input type="hidden" required name="articleId" placeholder="Article_Id ...." class="border-2 py-2 px-3 w-full rounded-md" value="<%= article._id %>" >
-              <input type="text" required name="headline" placeholder="Headline ...." class="border-2 py-2 px-3 w-full rounded-md" value="<%= article.headline %>" >
+              <input type="hidden" required name="articleId" placeholder="Article_Id ...." class="outline-blue-300  border-2 py-2 px-3 w-full rounded-md" value="<%= article._id %>" >
+              <input type="text" required name="headline" placeholder="Headline ...." class="outline-blue-300  border-2 py-2 px-3 w-full rounded-md" value="<%= article.headline %>" >
             </div>
             <div class="mb-3">
-              <input name="subHeadline" required   type="text" placeholder="subHeadline .... " class="border-2 py-2 px-3 w-full rounded-md" value="<%= article.subHeadline %>" >
+              <input name="subHeadline" required   type="text" placeholder="subHeadline .... " class="outline-blue-300  border-2 py-2 px-3 w-full rounded-md" value="<%= article.subHeadline %>" >
             </div>
             
-            <div class="mb-3 flex justify-center items-center border-2 relative">
+            <div class="mb-3 flex justify-center items-center outline-blue-300  border-2 relative">
 
-                <label for="image_input" class="pencil absolute bg-yellow-300 top-2 right-2 bg-white w-12 h-12 flex justify-center items-center rounded-full"><i class="fa-solid fa-pen fa-xl"></i></label>
+                <label for="image_input" class="pencil cursor-pointer absolute bg-yellow-300 top-2 right-2 bg-white w-12 h-12 flex justify-center items-center rounded-full"><i class="fa-solid fa-pen fa-xl"></i></label>
                 <input type="file" name="image" class="hidden"  onchange="PreviewImage();" id="image_input">
                 <img src="/uploads/<%= article.image %>" alt="" id="uploadPreview"  class="w-[20rem] h-[20rem]">
               </div>
 
             <div class="mb-3">
-               <textarea name="content" required id=""  rows="7" class="border-2 py-2 px-3 w-full rounded-md" placeholder="Content ...."><%= article.content %> </textarea>
+               <textarea name="content" required id=""  rows="7" class="outline-blue-300  border-2 py-2 px-3 w-full rounded-md" placeholder="Content ...."><%= article.content %> </textarea>
             </div>
             <div class="">
-              <button type="submit" class="py-1 px-3 bg-yellow-400 rounded-sm font-bold w-full">Update Article</button>
+              <button type="submit" class="py-1 px-3 bgThemeClr text-white rounded-sm font-bold w-full">Update Article</button>
             </div>
           </form>
        

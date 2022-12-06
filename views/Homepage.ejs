@@ -15,7 +15,7 @@
 <div class="w-11/12 sm:w-6/12 py-3 px-2 my-2 mx-auto bg-gray-100">
     <div class="flex flex-row justify-between items-center">
         <p class="text-lg">You have some thing in your mind  ? </p>
-        <a href="/article/new" class="py-1 px-3 bg-yellow-400 rounded-md w-[7rem] text-center">Add Post</a>
+        <a href="/article/new" class="py-1 px-3 bgThemeClr text-white font-bold rounded-md w-[7rem] text-center">Add Post</a>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
     <% if(articles.length > 0) {%>
         <% articles.forEach((article)=>{%>
           
-    <div class="grid grid-cols-12 bg-gray-100 py-2 rounded-md mt-3 px-2">
+    <div class="grid grid-cols-12 bg-gray-100 py-2 rounded-md mt-3 px-2 overflow-hidden">
         <div class="col-span-12 sm:col-span-3">
             <a href="/article/view/<%= article._id %>">
                 <img src="/uploads/<%= article.image %>"   class="w-[11rem] mx-auto" alt="image">
@@ -46,7 +46,7 @@
                     <%}%>
                     <%}%>
                     <a href="/article/view/<%= article._id %>">
-            <p class="text-[1rem] sm:text-md w-9/12 font-bold"><%= article.headline %></p>
+            <p class="text-[1rem] sm:text-[1.2rem] textThemeClr  w-9/12 font-bold"><%= article.headline %></p>
                     </a>
 
             <p class="text-[1rem] sm:text-md mt-2 font-semibold"><%= article.subHeadline %></p>

@@ -72,7 +72,7 @@ passport.deserializeUser(async(userId, done) => {
 
 
 app.get("/"   , async(req ,res) =>{
-  const articles = await articleModel.find().populate('author')
+  const articles = await articleModel.find().sort({'createdAt' : -1})
   if(req.user){
     return res.render('Homepage' ,{user : req.user , articles : articles})
   }  
